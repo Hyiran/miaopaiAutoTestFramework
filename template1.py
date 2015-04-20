@@ -2,6 +2,7 @@
 import sys
 import time
 import os
+from com.android.monkeyrunner import MonkeyRunner, MonkeyDevice
 
 print
 print
@@ -16,12 +17,17 @@ curdir = sys.argv[0]
 index = curdir.rfind("\\")
 curdir = curdir[:index]
 
-from com.android.monkeyrunner import MonkeyRunner, MonkeyDevice
+
+
+#获取时间，并返回具体时间的函数
+def getTime():
+    return "[" + time.strftime('%Y-%m-%d') + "   " + time.strftime('%H:%M:%S') + "]\n"
+
 
 #创建运行日志文件
 filename = curdir + '/log/beginLog.txt'  
 f = open(filename,'w')
-f.write("日志文件创建成功：       " + "[" + time.strftime('%Y-%m-%d') + "   " + time.strftime('%H:%M:%S') + "]\n")
+f.write("日志文件创建成功：       " + getTime())
 f.flush()
 print "create logfile success"
 
@@ -30,11 +36,16 @@ if not os.path.exists(curdir + '\screenShot\unlogin'):
     os.mkdir(curdir + '\screenShot\unlogin')
 print "screenShot folder created"
 
+
+
 #连接设备
 print "connecting device..."
 device = MonkeyRunner.waitForConnection()
-f.write("设备连接成功：       " + "[" + time.strftime('%Y-%m-%d') + "   " + time.strftime('%H:%M:%S') + "]\n")
+f.write("设备连接成功：       " + getTime())
 f.flush()
+
+
+
 
 #启动秒拍apk
 print "start miaiopai app"
@@ -42,7 +53,7 @@ package = 'com.yixia.videoeditor'
 activity = 'com.yixia.videoeditor.ui.login.SplashActivity'
 runComponent = package + '/' + activity
 device.startActivity(component=runComponent)
-f.write("启动秒拍：       " + "[" + time.strftime('%Y-%m-%d') + "   " + time.strftime('%H:%M:%S') + "]\n\n")
+f.write("启动秒拍：       " + getTime() + "\n")
 f.flush()
 MonkeyRunner.sleep(5.0)
 

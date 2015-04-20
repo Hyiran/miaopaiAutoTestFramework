@@ -2,6 +2,17 @@
 import sys
 import time
 import os
+from com.android.monkeyrunner import MonkeyRunner, MonkeyDevice
+
+#获取时间，并返回具体时间的函数
+def getTime():
+    return "[" + time.strftime('%Y-%m-%d') + "   " + time.strftime('%H:%M:%S') + "]\n"
+
+#截图，并保存图片的函数
+def getPic(device,curdir,path,num):
+    result = device.takeSnapshot()
+    result.writeToFile(curdir + '/screenShot/' + path + '/' + str(num) + '.png','png')
+    print "end screenshot: " + str(num) + ".png"
 
 print
 print
@@ -12,14 +23,12 @@ print
 print "###############################################"
 print "----start----"
 
+
+
+#获取当前目录
 curdir = sys.argv[0]
 index = curdir.rfind("\\")
 curdir = curdir[:index]
-
-from com.android.monkeyrunner import MonkeyRunner, MonkeyDevice
-
-def getTime():
-    return "[" + time.strftime('%Y-%m-%d') + "   " + time.strftime('%H:%M:%S') + "]\n"
 
 
 #创建运行日志文件
@@ -29,10 +38,14 @@ f.write("日志文件创建成功：       " + getTime())
 f.flush()
 print "create logfile success"
 
+
+
 #创建截图存放的文件夹
 if not os.path.exists(curdir + '\screenShot\unlogin'):
     os.mkdir(curdir + '\screenShot\unlogin')
 print "screenShot folder created"
+
+
 
 #连接设备
 print "connecting device..."
@@ -40,15 +53,18 @@ device = MonkeyRunner.waitForConnection()
 f.write("设备连接成功：       " + getTime())
 f.flush()
 
+
 #启动秒拍apk
 print "start miaiopai app"
 package = 'com.yixia.videoeditor'
 activity = 'com.yixia.videoeditor.ui.login.SplashActivity'
 runComponent = package + '/' + activity
 device.startActivity(component=runComponent)
-f.write("启动秒拍：       " + "[" + time.strftime('%Y-%m-%d') + "   " + time.strftime('%H:%M:%S') + "]\n\n")
+f.write("启动秒拍：       " + getTime() + "\n")
 f.flush()
 MonkeyRunner.sleep(10.0)
+
+
 
 
 #一下是正式的操作代码
@@ -94,9 +110,7 @@ f.flush()
 device.touch(182,314,"DOWN_AND_UP")
 f.write("点击进入详情页并开始播放视频：       " + getTime())
 MonkeyRunner.sleep(10.0)
-result = device.takeSnapshot()
-result.writeToFile(curdir + '/screenShot/unlogin/111xiang_qing_ye.png','png')
-print "end screenshot: 111xiang_qing_ye.png"
+getPic(device,curdir,"unlogin",1)
 #点击停止播放
 device.touch(389,650,"DOWN_AND_UP")
 f.write("点击停止播放：       " + getTime())
@@ -108,9 +122,7 @@ device.touch(641,205,"DOWN_AND_UP")
 f.write("点击加关注按钮：       " + getTime())
 f.flush()
 MonkeyRunner.sleep(2.0)
-result = device.takeSnapshot()
-result.writeToFile(curdir + '/screenShot/unlogin/112jia_guan_zhu_login.png','png')
-print "end screenshot: 112jia_guan_zhu_login.png"
+getPic(device,curdir,"unlogin",2)
 
 #点击关闭登录对话框
 device.touch(555,376,"DOWN_AND_UP")
@@ -176,9 +188,7 @@ device.touch(366,1221,"DOWN_AND_UP")
 f.write("点击拍摄按钮：       " + getTime())
 f.flush()
 MonkeyRunner.sleep(2.0)
-result = device.takeSnapshot()
-result.writeToFile(curdir + '/screenShot/unlogin/114pai_she.png','png')
-print "end screenshot: 114pai_she.png"
+getPic(device,curdir,"unlogin",3)
 #点击关闭登录对话框
 device.touch(558,373,"DOWN_AND_UP")
 f.write("点击关闭登录对话框：       " + getTime())
@@ -191,9 +201,7 @@ f.flush()
 MonkeyRunner.sleep(2.0)
 #点击立即登录
 device.touch(393,706,"DOWN_AND_UP")
-result = device.takeSnapshot()
-result.writeToFile(curdir + '/screenShot/unlogin/115hao_you.png','png')
-print "end screenshot: 115hao_you.png"
+getPic(device,curdir,"unlogin",4)
 f.write("点击立即登录：       " + getTime())
 f.flush()
 MonkeyRunner.sleep(2.0)
@@ -212,9 +220,7 @@ device.touch(364,704,"DOWN_AND_UP")
 f.write("点击立即登录：       " + getTime())
 f.flush()
 MonkeyRunner.sleep(2.0)
-result = device.takeSnapshot()
-result.writeToFile(curdir + '/screenShot/unlogin/115wo.png','png')
-print "end screenshot: 115wo.png"
+getPic(device,curdir,"unlogin",5)
 #点击关闭登录对话框
 device.touch(560,373,"DOWN_AND_UP")
 f.write("点击关闭登录对话框：       " + getTime())
@@ -229,10 +235,7 @@ MonkeyRunner.sleep(2.0)
 device.touch(398,952,"DOWN_AND_UP")
 f.write("点击立即登录：       " + getTime())
 f.flush()
-MonkeyRunner.sleep(2.0)
-result = device.takeSnapshot()
-result.writeToFile(curdir + '/screenShot/unlogin/116she_zhi.png','png')
-print "end screenshot: 116she_zhi.png"
+getPic(device,curdir,"unlogin",6)
 #点击关闭登录对话框
 device.touch(555,370,"DOWN_AND_UP")
 f.write("点击关闭登录对话框：       " + getTime())
