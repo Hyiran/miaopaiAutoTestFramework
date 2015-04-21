@@ -14,6 +14,12 @@ def getPic(device,curdir,path,num):
     result.writeToFile(curdir + '/screenShot/' + path + '/' + str(num) + '.png','png')
     print "end screenshot: " + str(num) + ".png"
 
+#写入相应的日志
+def writeToLog(f,string):
+    f.write(string + getTime())
+    f.flush()
+
+
 print
 print
 print "###############################################"
@@ -65,7 +71,7 @@ f.flush()
 MonkeyRunner.sleep(10.0)
 
 
-
+def startOperate():
 
 #一下是正式的操作代码
 print "start oparation ..."
@@ -105,7 +111,11 @@ f.flush()
 ##26、点击返回退出设置页面
 ##27、点击首页
 
+
+
 #-----------------------将转换后的代码复制到以下位置------------------------------
+
+
 #点击进入详情页并开始播放视频
 device.touch(182,314,"DOWN_AND_UP")
 f.write("点击进入详情页并开始播放视频：       " + getTime())
@@ -113,143 +123,117 @@ MonkeyRunner.sleep(10.0)
 getPic(device,curdir,"unlogin",1)
 #点击停止播放
 device.touch(389,650,"DOWN_AND_UP")
-f.write("点击停止播放：       " + getTime())
-f.flush()
+writeToLog(f,"点击停止播放：       ")
 MonkeyRunner.sleep(2.0)
 
 #点击加关注按钮
 device.touch(641,205,"DOWN_AND_UP")
-f.write("点击加关注按钮：       " + getTime())
-f.flush()
+writeToLog(f,"点击加关注按钮：       ")
 MonkeyRunner.sleep(2.0)
 getPic(device,curdir,"unlogin",2)
 
 #点击关闭登录对话框
 device.touch(555,376,"DOWN_AND_UP")
-f.write("点击关闭登录对话框：       " + getTime())
-f.flush()
+writeToLog(f,"点击关闭登录对话框：       ")
 MonkeyRunner.sleep(2.0)
 #向上滑动
 device.drag((288,1024),(288,724),1.0,10)
-f.write("向上滑动：       " + getTime())
-f.flush()
+writeToLog(f,"向上滑动：       ")
 MonkeyRunner.sleep(2.0)
 #双击喜欢
 device.touch(400,418,"DOWN_AND_UP")
 device.touch(400,418,"DOWN_AND_UP")
-f.write("双击喜欢：       " + getTime())
-f.flush()
+writeToLog(f,"双击喜欢：       ")
 MonkeyRunner.sleep(2.0)
 #点击关闭登录对话框
 device.touch(555,370,"DOWN_AND_UP")
-f.write("点击关闭登录对话框：       " + getTime())
-f.flush()
+writeToLog(f,"点击关闭登录对话框：       ")
 MonkeyRunner.sleep(2.0)
 
-#-------------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------
 ###点击喜欢按钮
 ##device.touch(461,1034,"DOWN_AND_UP")
-##f.write("点击喜欢按钮：       " + getTime())
-##f.flush()
+##writeToLog(f,"点击喜欢按钮：       ")
 ##MonkeyRunner.sleep(2.0)
 ###点击关闭登录对话框
 ##device.touch(560,373,"DOWN_AND_UP")
-##f.write("点击关闭登录对话框：       " + getTime())
-##f.flush()
+##writeToLog(f,"点击关闭登录对话框：       ")
 ##MonkeyRunner.sleep(2.0)
 ###点击分享
-##device.touch(621,1024,"DOWN_AND_UP")
-##f.write("点击分享：       " + getTime())
-##f.flush()
+##device.touch(621,1024,"DOWN_AND_UP")\
+##writeToLog(f,"点击分享：       ")
 ##MonkeyRunner.sleep(2.0)
 ###点击关闭登录对话框
 ##device.touch(555,376,"DOWN_AND_UP")
-##f.write("点击关闭登录对话框：       " + getTime())
-##f.flush()
+##writeToLog(f,"点击关闭登录对话框：       ")
 ##MonkeyRunner.sleep(2.0)
-#-------------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------
 #点击发送按钮
 device.touch(679,1224,"DOWN_AND_UP")
-f.write("点击发送按钮：       " + getTime())
-f.flush()
+writeToLog(f,"点击发送按钮：       ")
 MonkeyRunner.sleep(2.0)
 #点击关闭登录对话框
 device.touch(560,365,"DOWN_AND_UP")
-f.write("点击关闭登录对话框：       " + getTime())
-f.flush()
+writeToLog(f,"点击关闭登录对话框：       ")
 MonkeyRunner.sleep(2.0)
 #点击返回退出详情页面
 device.touch(38,90,"DOWN_AND_UP")
-f.write("点击返回退出详情页面：       " + getTime())
-f.flush()
+writeToLog(f,"点击返回退出详情页面：       ")
 MonkeyRunner.sleep(2.0)
 #点击拍摄按钮
 device.touch(366,1221,"DOWN_AND_UP")
-f.write("点击拍摄按钮：       " + getTime())
-f.flush()
+writeToLog(f,"点击拍摄按钮：       ")
 MonkeyRunner.sleep(2.0)
 getPic(device,curdir,"unlogin",3)
 #点击关闭登录对话框
 device.touch(558,373,"DOWN_AND_UP")
-f.write("点击关闭登录对话框：       " + getTime())
-f.flush()
+writeToLog(f,"点击关闭登录对话框：       ")
 MonkeyRunner.sleep(2.0)
 #点击好友
 device.touch(531,1232,"DOWN_AND_UP")
-f.write("点击好友：       " + getTime())
-f.flush()
+writeToLog(f,"点击好友：       ")
 MonkeyRunner.sleep(2.0)
 #点击立即登录
 device.touch(393,706,"DOWN_AND_UP")
 getPic(device,curdir,"unlogin",4)
-f.write("点击立即登录：       " + getTime())
-f.flush()
+writeToLog(f,"点击立即登录：       ")
 MonkeyRunner.sleep(2.0)
 #点击关闭登录对话框
 device.touch(560,376,"DOWN_AND_UP")
-f.write("点击关闭登录对话框：       " + getTime())
-f.flush()
+writeToLog(f,"点击关闭登录对话框：       ")
 MonkeyRunner.sleep(2.0)
 #点击我
 device.touch(652,1229,"DOWN_AND_UP")
-f.write("点击我：       " + getTime())
-f.flush()
+writeToLog(f,"点击我：       ")
 MonkeyRunner.sleep(2.0)
 #点击立即登录
 device.touch(364,704,"DOWN_AND_UP")
-f.write("点击立即登录：       " + getTime())
-f.flush()
+writeToLog(f,"点击立即登录：       ")
 MonkeyRunner.sleep(2.0)
 getPic(device,curdir,"unlogin",5)
 #点击关闭登录对话框
 device.touch(560,373,"DOWN_AND_UP")
-f.write("点击关闭登录对话框：       " + getTime())
-f.flush()
+writeToLog(f,"点击关闭登录对话框：       ")
 MonkeyRunner.sleep(2.0)
 #点击设置
 device.touch(58,104,"DOWN_AND_UP")
-f.write("点击设置：       " + getTime())
-f.flush()
+writeToLog(f,"点击设置：       ")
 MonkeyRunner.sleep(2.0)
 #点击立即登录
 device.touch(398,952,"DOWN_AND_UP")
-f.write("点击立即登录：       " + getTime())
-f.flush()
+writeToLog(f,"点击立即登录：       ")
 getPic(device,curdir,"unlogin",6)
 #点击关闭登录对话框
 device.touch(555,370,"DOWN_AND_UP")
-f.write("点击关闭登录对话框：       " + getTime())
-f.flush()
+writeToLog(f,"点击关闭登录对话框：       ")
 MonkeyRunner.sleep(2.0)
 #点击返回退出设置页面
 device.touch(45,93,"DOWN_AND_UP")
-f.write("点击返回退出设置页面       " + getTime())
-f.flush()
+writeToLog(f,"点击返回退出设置页面       ")
 MonkeyRunner.sleep(2.0)
 #点击首页
 device.touch(63,1221,"DOWN_AND_UP")
-f.write("点击首页：       " + getTime())
-f.flush()
+writeToLog(f,"点击首页：       ")
 MonkeyRunner.sleep(2.0)
 
 #-----------------------将转换后的代码复制到以上位置------------------------------
