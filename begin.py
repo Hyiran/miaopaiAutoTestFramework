@@ -19,6 +19,15 @@ def writeToLog(f,string):
     f.write(string + getTime())
     f.flush()
 
+def writeToDetails(fi,details):
+    fi.write(details + "\n")
+    fi.flush()
+
+
+#连接设备
+print "connecting device..."
+device = MonkeyRunner.waitForConnection()
+
 
 print
 print
@@ -27,8 +36,15 @@ print
 print "          start run automatic script           "
 print
 print "###############################################"
-print "----start----"
-
+print
+#显示手机型号
+print str(device.getProperty('build.model'))
+#获取手机的width,height
+print 'width'+ ':'+ str(device.getProperty('display.width'))
+print 'height'+ ':'+ str(device.getProperty('display.height'))
+print
+print "###############################################"
+print "-----start-----"
 
 
 #获取当前目录
@@ -45,19 +61,16 @@ f.flush()
 print "create logfile success"
 
 
-
 #创建截图存放的文件夹
 if not os.path.exists(curdir + '\screenShot\unlogin'):
     os.mkdir(curdir + '\screenShot\unlogin')
 print "screenShot folder created"
 
 
-
-#连接设备
-print "connecting device..."
-device = MonkeyRunner.waitForConnection()
-f.write("设备连接成功：       " + getTime())
-f.flush()
+#创建截图的解释文件
+filename2 = curdir + '/screenShot/unlogin/readme.txt'
+fi = open(filename2,'w')
+print "create screenshot details file success"
 
 
 #启动秒拍apk
@@ -71,7 +84,6 @@ f.flush()
 MonkeyRunner.sleep(10.0)
 
 
-def startOperate():
 
 #一下是正式的操作代码
 print "start oparation ..."
@@ -121,6 +133,7 @@ device.touch(182,314,"DOWN_AND_UP")
 f.write("点击进入详情页并开始播放视频：       " + getTime())
 MonkeyRunner.sleep(10.0)
 getPic(device,curdir,"unlogin",1)
+writeToDetails(fi,"1、第一张截图")
 #点击停止播放
 device.touch(389,650,"DOWN_AND_UP")
 writeToLog(f,"点击停止播放：       ")
@@ -131,6 +144,7 @@ device.touch(641,205,"DOWN_AND_UP")
 writeToLog(f,"点击加关注按钮：       ")
 MonkeyRunner.sleep(2.0)
 getPic(device,curdir,"unlogin",2)
+writeToDetails(fi,"2、第二张截图")
 
 #点击关闭登录对话框
 device.touch(555,376,"DOWN_AND_UP")
@@ -241,5 +255,6 @@ MonkeyRunner.sleep(2.0)
 
 print "end..."
 f.close()
+fi.close
 
 
