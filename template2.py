@@ -61,8 +61,8 @@ print "create logfile success"
 
 
 #创建截图存放的文件夹
-if not os.path.exists(curdir + '\screenShot\template2'):
-    os.mkdir(curdir + '\screenShot\template2')
+if not os.path.exists(curdir + '\\screenShot\\template2'):
+    os.mkdir(curdir + '\\screenShot\\template2')
 print "screenShot folder created"
 
 
@@ -73,7 +73,7 @@ print "create screenshot details file success"
 
 
 #安装apk
-device.installPackage(curdir + '\\apk\miaopai510.apk')
+device.installPackage(curdir + '\\apk\\miaopai510.apk')
 print "install successfully !"
 print
 
@@ -91,7 +91,7 @@ MonkeyRunner.sleep(10.0)
 
 
 result = device.takeSnapshot()
-result.writeToFile(curdir + '\\screenShot\yingdaotu.png','png')
+getPic(device,curdir,"template2",1)
 print "end screenshot: yingdaotu.png"
 MonkeyRunner.sleep(1.0)
 

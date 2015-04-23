@@ -62,13 +62,13 @@ print "create logfile success"
 
 
 #创建截图存放的文件夹
-if not os.path.exists(curdir + '\\screenShot\\unlogin'):
-    os.mkdir(curdir + '\\screenShot\\unlogin')
+if not os.path.exists(curdir + '\\screenShot\\mobileLogin'):
+    os.mkdir(curdir + '\\screenShot\\mobileLogin')
 print "screenShot folder created"
 
 
 #创建截图的解释文件
-filename2 = curdir + '/screenShot/unlogin/readme.txt'
+filename2 = curdir + '/screenShot/mobileLogin/readme.txt'
 fi = open(filename2,'w')
 print "create screenshot details file success"
 
@@ -95,23 +95,33 @@ f.write("**********************************************\n\n")
 f.flush()
 
 #------------------------将转换后的自动化脚本复制到以下区域即可--------------------------------
+##1、点击拍摄按钮
+##2、点击登陆界面的手机号
+##3、点击手机号登陆页面的手机号输入框
+##4、输入手机号18600989561
+##5、点击密码输入框
+##6、输入密码
+##7、点击登陆
 
+device.touch(364,1226,"DOWN_AND_UP")
+MonkeyRunner.sleep(2.0)
+writeToLog(f,"点击拍摄按钮")
+getPic(device,curdir,"mobileLogin",1)
+writeToDetails(fi,"1、点击拍摄按钮弹出登陆界面截图")
 
-device.touch(389,1229,"DOWN_AND_UP")
+device.touch(479,738,"DOWN_AND_UP")
 MonkeyRunner.sleep(2.0)
-device.touch(474,725,"DOWN_AND_UP")
+
+device.touch(366,218,"DOWN_AND_UP")
 MonkeyRunner.sleep(2.0)
-device.touch(274,229,"DOWN_AND_UP")
+device.type("18600989561")
 MonkeyRunner.sleep(2.0)
-device.type("13146201117")
-MonkeyRunner.sleep(2.0)
-device.touch(337,317,"DOWN_AND_UP")
+device.touch(308,320,"DOWN_AND_UP")
 MonkeyRunner.sleep(2.0)
 device.type("123456")
-
-
 MonkeyRunner.sleep(2.0)
-device.touch(420,448,"DOWN_AND_UP")
+device.touch(378,440,"DOWN_AND_UP")
+MonkeyRunner.sleep(10.0)
 
 
 

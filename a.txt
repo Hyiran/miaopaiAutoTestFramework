@@ -1,0 +1,13 @@
+TOUCH|{'x':510,'y':317,'type':'downAndUp',}
+WAIT|{'seconds':2.0,}
+TYPE|{'message':'12',}
+WAIT|{'seconds':2.0,}
+TOUCH|{'x':387,'y':434,'type':'downAndUp',}
+WAIT|{'seconds':2.0,}
+TYPE|{'message':'1234567',}
+WAIT|{'seconds':2.0,}
+TOUCH|{'x':357,'y':445,'type':'downAndUp',}
+WAIT|{'seconds':2.0,}
+TYPE|{'message':'123456',}
+WAIT|{'seconds':2.0,}
+TOUCH|{'x':409,'y':450,'type':'downAndUp',}
