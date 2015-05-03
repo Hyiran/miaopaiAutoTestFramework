@@ -54,7 +54,7 @@ curdir = curdir[:index]
 
 
 #创建运行日志文件
-filename = curdir + '/log/beginLog.txt'  
+filename = curdir + '/log/unloginLog.txt'  
 f = open(filename,'w')
 f.write("日志文件创建成功：       " + getTime())
 f.flush()

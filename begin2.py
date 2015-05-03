@@ -4,6 +4,7 @@ import time
 import os
 from com.android.monkeyrunner import MonkeyRunner, MonkeyDevice
 
+
 #获取时间，并返回具体时间的函数
 def getTime():
     return "[" + time.strftime('%Y-%m-%d') + "   " + time.strftime('%H:%M:%S') + "]\n"
@@ -23,11 +24,9 @@ def writeToDetails(fi,details):
     fi.write(details + "\n")
     fi.flush()
 
-
 #连接设备
 print "connecting device..."
 device = MonkeyRunner.waitForConnection()
-
 
 print
 print
@@ -54,7 +53,7 @@ curdir = curdir[:index]
 
 
 #创建运行日志文件
-filename = curdir + '/log/beginLog.txt'  
+filename = curdir + '/log/begin2Log.txt'  
 f = open(filename,'w')
 f.write("日志文件创建成功：       " + getTime())
 f.flush()
@@ -73,17 +72,17 @@ fi = open(filename2,'w')
 print "create screenshot details file success"
 
 
+#安装apk
+device.installPackage(curdir + '\\apk\\miaopai520.apk')
+print "install successfully !"
+print
+
 #启动秒拍apk
-print "start miaiopai app"
 package = 'com.yixia.videoeditor'
 activity = 'com.yixia.videoeditor.ui.login.SplashActivity'
 runComponent = package + '/' + activity
 device.startActivity(component=runComponent)
-f.write("启动秒拍：       " + getTime() + "\n")
-f.flush()
 MonkeyRunner.sleep(10.0)
-
-
 
 #一下是正式的操作代码
 print "start oparation ..."
@@ -94,7 +93,7 @@ f.write("         未登录情况用例执行                       \n")
 f.write("**********************************************\n\n")
 f.flush()
 
-##【未登录情况下测试】测试步骤：
+#------------------------将转换后的自动化脚本复制到以下区域即可--------------------------------
 ##1、点击进入详情页开始播放
 ##2、点击视频区域停止播放
 ##3、点击加关注按钮
@@ -123,9 +122,13 @@ f.flush()
 ##26、点击返回退出设置页面
 ##27、点击首页
 
-
-#-----------------------将转换后的代码复制到以下位置------------------------------
-
+#引导页截图
+getPic(device,curdir,"",1)
+f.write("点引导页截图：       " + getTime())
+print "**********************************************"
+#跳过引导页
+device.press("KEYCODE_BACK","DOWN_AND_UP")
+MonkeyRunner.sleep(10.0)
 
 #点击进入详情页并开始播放视频
 device.touch(182,314,"DOWN_AND_UP")
@@ -1022,11 +1025,14 @@ MonkeyRunner.sleep(2.0)
 getPic(device,curdir,"captureTest",11)
 writeToDetails(fi,"11、首页截图")
 
-#-----------------------将转换后的代码复制到以上位置------------------------------
 
 
+#------------------------将转换后的自动化脚本复制到以上区域即可--------------------------------
+
+print "uninstalling ......."
+device.removePackage('com.yixia.videoeditor')
+print "uninstalled"
 print "end..."
 f.close()
 fi.close
-
 
